@@ -6,14 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lukebusch.fetchlist.R
+import com.lukebusch.fetchlist.data.service.ListItemService
 import com.lukebusch.fetchlist.domain.ListDisplayItem
 import com.lukebusch.fetchlist.domain.ListItemAdapter
+import com.lukebusch.fetchlist.domain.use_case.GetAllListItemsUseCase
 import com.lukebusch.fetchlist.presentation.view.viewmodel.MainActivityViewModel
 import com.lukebusch.fetchlist.presentation.view.viewmodel.MainActivityViewModelImpl
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity(private val viewModel: MainActivityViewModelImpl) : AppCompatActivity() {
 
-    val viewModel = MainActivityViewModelImpl()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +30,7 @@ class MainActivity() : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val data = mutableListOf<ListDisplayItem>()
-
-        data.add(ListDisplayItem("684", "1", "Item 684"))
-        data.add(ListDisplayItem("755", "2", ""))
-        data.add(ListDisplayItem("276", "1", "Item 276"))
-        data.add(ListDisplayItem("680", "3", "Item 680"))
-        data.add(ListDisplayItem("684", "1", null))
+       val data = viewModel.getListItems()
 
         val filteredData = viewModel.prepareDisplayData(data)
 
