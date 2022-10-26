@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lukebusch.fetchlist.common.Resource
 import com.lukebusch.fetchlist.domain.ListDisplayItem
-import com.lukebusch.fetchlist.presentation.view.DisplayState
 import com.lukebusch.fetchlist.domain.use_case.GetAllListItemsUseCase
+import com.lukebusch.fetchlist.presentation.view.DisplayState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,10 +33,24 @@ class MainActivityViewModel @Inject constructor(private val getItemsUseCase: Get
      * @return a list of items sorted for display
      */
     fun prepareDisplayData(items: List<ListDisplayItem>): List<ListDisplayItem> {
-        return items.sortedWith(compareBy({ it.listId }, { it.name })).filterNot { it.name.isNullOrBlank() }
+        return items.sortedWith(compareBy({ it.listId }, { it.name }))
+            .filterNot { it.name.isNullOrBlank() }
     }
 
-    fun getListItems() {
+    /**
+     * Groups a list of items by their listId
+     *
+     * @param items list of [ListDisplayItem]
+     * @return map of list items grouped by listId with the group
+     */
+    private fun groupByListId(items: List<ListDisplayItem>): Map<String, List<ListDisplayItem>> {
+        val groupedItems = items.groupBy { it.listId }
+
+        return groupedItems
+
+    }
+
+    private fun getListItems() {
         getItemsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
