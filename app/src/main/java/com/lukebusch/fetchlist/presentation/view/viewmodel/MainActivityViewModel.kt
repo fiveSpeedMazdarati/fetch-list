@@ -9,9 +9,12 @@ import com.lukebusch.fetchlist.domain.ListDisplayItem
 import com.lukebusch.fetchlist.domain.use_case.GetAllListItemsUseCase
 import com.lukebusch.fetchlist.presentation.view.DisplayState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(private val getItemsUseCase: GetAllListItemsUseCase) :
