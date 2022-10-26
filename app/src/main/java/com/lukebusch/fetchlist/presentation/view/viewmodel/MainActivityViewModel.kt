@@ -40,19 +40,6 @@ class MainActivityViewModel @Inject constructor(private val getItemsUseCase: Get
             .filterNot { it.name.isNullOrBlank() }
     }
 
-    /**
-     * Groups a list of items by their listId
-     *
-     * @param items list of [ListDisplayItem]
-     * @return map of list items grouped by listId with the group
-     */
-    private fun groupByListId(items: List<ListDisplayItem>): Map<String, List<ListDisplayItem>> {
-        val groupedItems = items.groupBy { it.listId }
-
-        return groupedItems
-
-    }
-
     fun getListItems() {
         getItemsUseCase().onEach { result ->
             when (result) {
