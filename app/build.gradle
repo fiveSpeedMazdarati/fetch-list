@@ -90,4 +90,7 @@ dependencies {
 
     //Mockito
     testImplementation "org.mockito:mockito-inline:4.8.1"
+
+    //SwipeRefresh for Compose
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.25.1"
 }

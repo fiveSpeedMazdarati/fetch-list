@@ -53,7 +53,7 @@ class MainActivityViewModel @Inject constructor(private val getItemsUseCase: Get
 
     }
 
-    private fun getListItems() {
+    fun getListItems() {
         getItemsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
