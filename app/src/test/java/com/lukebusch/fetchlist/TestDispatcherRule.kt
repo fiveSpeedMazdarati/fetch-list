@@ -10,6 +10,7 @@ import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
+// found at https://www.valueof.io/blog/test-coroutine-scheduler-dispatcher-main-rule
 /**
  * A [TestRule] that initializes the main dispatcher to [dispatcher], which defaults to a
  * [StandardTestDispatcher].
