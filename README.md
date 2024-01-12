@@ -11,7 +11,8 @@ The next thing I'd do is to implement a sticky headers feature in the scrolling 
 
 ### Tech used in this app
 
-Retrofit2  
+Retrofit2
+Dagger - Hilt
 Jetpack Compose  
 JUnit  
 Mockito  
